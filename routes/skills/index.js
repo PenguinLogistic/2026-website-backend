@@ -9,7 +9,7 @@ module.exports = async function (fastify, opts) {
       FROM public.skills
       ORDER BY category, experience_lv DESC
     `);
-      return rows;
+      return { skills: rows };
     } catch (err) {
       console.error(err);
       reply.status(500).send({ error: "Failed to fetch skills" });
