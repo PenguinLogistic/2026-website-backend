@@ -1,7 +1,13 @@
 "use strict";
 
 const { Resend } = require("resend");
-const resend = new Resend(process.env.RESEND_API_KEY);
+
+function getResend() {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY not set");
+  }
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 function escapeHtml(unsafe) {
   return unsafe
@@ -29,6 +35,7 @@ module.exports = async function (fastify, opts) {
     }
 
     try {
+      const resend = getResend();
       await resend.emails.send({
         from: "onboarding@resend.dev",
         to: ["ryan.shiuhong.fung@gmail.com"],
