@@ -6,7 +6,11 @@ const cors = require("@fastify/cors");
 
 // Pass --options via CLI arguments in command to enable these options.
 const options = {};
-const whitelist = ["localhost", "vercel.app", "vercel.com"];
+const whitelist = [
+  "localhost",
+  "2026-website-backend-production.up.railway.app",
+  "ryan-fung.vercel.app",
+];
 module.exports = async function (fastify, opts) {
   // Place here your custom code!
 
